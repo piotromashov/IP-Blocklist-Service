@@ -1,0 +1,10 @@
+fastapi
+fastapi-utils
+typing_inspect
+uvicorn
+requests
+redis
+
+# Testing
+pytest
+httpx
