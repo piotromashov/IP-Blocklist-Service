@@ -2,3 +2,5 @@
 *.rdb
 __pycache__
 .pytest_cache
+#macos
+.DS_Store
