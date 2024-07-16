@@ -1,14 +1,26 @@
 version: '3.8'
 
 services:
-  app:
+  ip-checking-service:
     build:
-      context: .
+      context: ./ip-checking-service
       dockerfile: Dockerfile
-    image: fastapi-blocklist:latest  # Specify the custom image name and tag
-    container_name: fastapi-blocklist
+    image: ip-checking-service:latest  # Specify the custom image name and tag
+    container_name: ip-checking-service
     ports:
       - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+
+  blocklist-updater-service:
+    build:
+      context: ./blocklist-updater-service
+      dockerfile: Dockerfile
+    image: blocklist-updater-service:latest
+    container_name: blocklist-updater-service
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
