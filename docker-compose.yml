@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: library/fastapi-blocklist:latest  # Specify the custom image name and tag
+    image: fastapi-blocklist:latest  # Specify the custom image name and tag
     container_name: fastapi-blocklist
     ports:
       - "8000:8000"
