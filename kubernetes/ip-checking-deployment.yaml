@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-checking
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ip-checking
+  template:
+    metadata:
+      labels:
+        app: ip-checking
+    spec:
+      containers:
+      - name: ip-checking
+        image: ip-checking:latest
+        imagePullPolicy: Never  # Use the local image
+        ports:
+        - containerPort: 8000
+        env:
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
