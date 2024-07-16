@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-blocklist
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi-blocklist
+  template:
+    metadata:
+      labels:
+        app: fastapi-blocklist
+    spec:
+      containers:
+      - name: fastapi-blocklist
+        image: fastapi-blocklist:latest
+        imagePullPolicy: Never  # Use the local image
+        ports:
+        - containerPort: 8000
+        env:
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
