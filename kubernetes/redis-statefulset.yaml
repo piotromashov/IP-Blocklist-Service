@@ -22,7 +22,31 @@ spec:
         - name: redis-config
           mountPath: /usr/local/etc/redis/redis.conf
           subPath: redis.conf
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        command:
+        - sh
+        - -c
+        - |
+          if [ "$(hostname)" = "redis-0" ]; then
+            echo "Starting Redis master"
+            redis-server /usr/local/etc/redis/redis.conf
+          else
+            echo "Starting Redis replica"
+            redis-server /usr/local/etc/redis/redis.conf --replicaof redis-0.redis 6379
+          fi
       volumes:
       - name: redis-config
         configMap:
           name: redis-config
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi

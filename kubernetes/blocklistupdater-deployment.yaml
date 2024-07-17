@@ -20,6 +20,6 @@ spec:
         - containerPort: 8000
         env:
         - name: REDIS_HOST
-          value: "redis"
+          value: "redis-0.redis"  # Point to the Redis master node
         - name: REDIS_PORT
           value: "6379"
