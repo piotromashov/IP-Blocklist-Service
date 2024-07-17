@@ -11,27 +11,31 @@
     - `{"blocked": true}`: If the IP is on the blocklist.
     - `{"blocked": false}`: If the IP is not on the blocklist.
 
+## Requirements
+Python, Docker, Unix.
 
 ## How to run locally
-Execute `docker-compose up --build`   
-Then go to [0.0.0.0:8000](http://0.0.0.0:8000)
+1. Execute `docker-compose up --build`   
+2. Then go to [0.0.0.0:8000](http://0.0.0.0:8000)
 
 ## How to run tests
-First have a redis instance running locally, you can do so using docker.  
+1. First have a redis instance running locally, you can do so using docker.  
 `docker run --name my-redis -d -p 6379:6379 redis:latest`  
-Then run:   
+2. Install all needed requirements.  
+`pip install -r blocklistupdater/requirements.txt`  
+`pip install -r ipchecking/requirements.txt`  
+`pip install -r tests/requirements.txt`  
+3. Then run: 
 `python tests/test_main.py`
 
 ## How to run with Kubernetes
 
-Give execution permisions to `setup_minikube.sh`:   
+1. Give execution permisions to `setup_minikube.sh`:   
 `chmod u+x setup_minikube.sh`
-
-Then run `./setup_minikube.sh`.  
-Once the process is done, you can check the service via  
+2. Then run `./setup_minikube.sh`.  
+3. Once the process is done, you can check the service via  
 `minikube service ipchecking --url`
-
-You can also checkout the dashboard to enter the pods and see their logs  
+4. You can also checkout the dashboard to enter the pods and see their logs  
 `minikube dashboard`
 
 
