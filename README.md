@@ -52,7 +52,7 @@ Our approach ensures operational stability and performance under heavy load thro
 - **Kubernetes Orchestration:** Automates the management, scaling, and monitoring of the services, ensuring that they remain operational and responsive under varying loads.
 
 
-## ipchecking-service
+### ipchecking-service
 >The IP checking service is built using FastAPI, which is known for its high performance and low latency. FastAPI leverages asynchronous programming to handle a large number of concurrent requests efficiently.   
 This is the main service exposing the endpoint /check_ip/
 
@@ -60,7 +60,7 @@ This is the main service exposing the endpoint /check_ip/
 * Horizontal Scaling: The IP checking service can be horizontally scaled by increasing the number of replicas. Kubernetes can automatically distribute the load across multiple instances, ensuring that the service remains responsive under heavy load.
 
 
-## blocklistupdater-service
+### blocklistupdater-service
 >This is a separate service in order to perform updates on our local redis service from source of truth. This service will perform updates once every 24h or when starting up (whichever comes first, could be improved with a TTL flag to strictly perform updates every 24h). 
 
 #### Features:
@@ -72,13 +72,13 @@ This is the main service exposing the endpoint /check_ip/
 * Atomic Updates: By using a temporary key and renaming it atomically, we ensure that the blocklist is updated in a consistent and atomic manner, preventing partial updates and ensuring data integrity. 
 
 
-## redis-service
+### redis-service
 >Redis is an in-memory data store, providing extremely low latency for both read and write operations. This ensures that the system can respond quickly even under heavy load.
 
 #### Features
 * By using a master-replica setup, we ensure that the data is replicated across multiple nodes. If the master node fails, the replicas can still serve read requests, and a new master can be promoted to handle write operations.
 
-## Kubernetes
+### Kubernetes
 >Kubernetes Deployments manage redis, blocklist updater and the IP checking services, ensuring that they are always running the desired number of replicas. Kubernetes can automatically restart failed pods and distribute the load across the cluster, ensuring high availability and operational under heavy load.
 
 
