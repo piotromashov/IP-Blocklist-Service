@@ -20,13 +20,16 @@ Python, Docker, Minikube, Unix.
 
 ## How to run tests
 1. First have a redis instance running locally, you can do so using docker.  
-`docker run --name my-redis -d -p 6379:6379 redis:latest`  
+`docker run --name my-redis -d -p 6379:6379 redis:latest`
+2. Create a python virtual environment (so you can keep clean your python installation) and activate it.  
+`python3 -m venv .venv`  
+`source .venv/bin/activate`
 2. Install all needed requirements.  
 `pip install -r blocklistupdater/requirements.txt`  
 `pip install -r ipchecking/requirements.txt`  
 `pip install -r tests/requirements.txt`  
 3. Then run: 
-`python tests/test_main.py`
+`pytest tests/test_main.py`
 
 ## How to run with Kubernetes
 
