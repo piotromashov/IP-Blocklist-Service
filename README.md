@@ -46,24 +46,24 @@ We want to avoid making external calls for each call to our service, thus we sav
 
 Our approach ensures operational stability and performance under heavy load through the following key strategies:
 
-- Redis Master-Replica Configuration: Provides high availability, fault tolerance, and scalability for read and write operations.
-- Dedicated Blocklist Updater Service: Ensures efficient and reliable updates to the blocklist without affecting the IP checking service.
-- High-Performance IP Checking Service: Built using FastAPI for low latency and high concurrency, with the ability to scale horizontally.
-- Kubernetes Orchestration: Automates the management, scaling, and monitoring of the services, ensuring that they remain operational and responsive under varying loads.
+- **Redis Master-Replica Configuration:** Provides high availability, fault tolerance, and scalability for read and write operations.
+- **Dedicated Blocklist Updater Service:** Ensures efficient and reliable updates to the blocklist without affecting the IP checking service.
+- **High-Performance IP Checking Service:** Built using FastAPI for low latency and high concurrency, with the ability to scale horizontally.
+- **Kubernetes Orchestration:** Automates the management, scaling, and monitoring of the services, ensuring that they remain operational and responsive under varying loads.
 
 
 ## ipchecking-service
 >The IP checking service is built using FastAPI, which is known for its high performance and low latency. FastAPI leverages asynchronous programming to handle a large number of concurrent requests efficiently.   
 This is the main service exposing the endpoint /check_ip/
 
-### Features:
+#### Features:
 * Horizontal Scaling: The IP checking service can be horizontally scaled by increasing the number of replicas. Kubernetes can automatically distribute the load across multiple instances, ensuring that the service remains responsive under heavy load.
 
 
 ## blocklistupdater-service
 >This is a separate service in order to perform updates on our local redis service from source of truth. This service will perform updates once every 24h or when starting up (whichever comes first, could be improved with a TTL flag to strictly perform updates every 24h). 
 
-### Features:
+#### Features:
 
 * Separation of Concerns: By separating the blocklist update functionality into a dedicated service, we ensure that the IP checking service is not affected by the update process. This separation allows each service to be optimized for its specific workload. 
 
