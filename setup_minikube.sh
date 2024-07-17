@@ -21,8 +21,8 @@ eval $(minikube -p minikube docker-env)
 
 # Build Docker images
 print_message "Building Docker images..."
-docker build -t ip-checking:latest ./ip-checking
-docker build -t blocklist-updater:latest ./blocklist-updater
+docker build -t ipchecking:latest ./ipchecking
+docker build -t blocklistupdater:latest ./blocklistupdater
 
 # Apply Redis Configurations
 print_message "Applying Redis configurations..."
@@ -32,17 +32,17 @@ kubectl apply -f kubernetes/redis-service.yaml
 
 # Apply IP Checking Service Configurations
 print_message "Applying IP Checking Service configurations..."
-kubectl apply -f kubernetes/ip-checking-deployment.yaml
-kubectl apply -f kubernetes/ip-checking-service.yaml
+kubectl apply -f kubernetes/ipchecking-deployment.yaml
+kubectl apply -f kubernetes/ipchecking-service.yaml
 
 # Apply Blocklist Updater Service Configurations
 print_message "Applying Blocklist Updater Service configurations..."
-kubectl apply -f kubernetes/blocklist-updater-deployment.yaml
-kubectl apply -f kubernetes/blocklist-updater-service.yaml
+kubectl apply -f kubernetes/blocklistupdater-deployment.yaml
+kubectl apply -f kubernetes/blocklistupdater-service.yaml
 
 # Wait for services to be ready
 print_message "Waiting for services to be ready..."
-kubectl wait --for=condition=available --timeout=600s deployment/ip-checking
-kubectl wait --for=condition=available --timeout=600s deployment/blocklist-updater
+kubectl wait --for=condition=available --timeout=600s deployment/ipchecking
+kubectl wait --for=condition=available --timeout=600s deployment/blocklistupdater
 
 echo "Done!"

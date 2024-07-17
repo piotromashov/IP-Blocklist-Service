@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  ip-checking-service:
+  ipchecking-service:
     build:
-      context: ./ip-checking
+      context: ./ipchecking
       dockerfile: Dockerfile
-    image: ip-checking:latest  # Specify the custom image name and tag
-    container_name: ip-checking
+    image: ipchecking:latest  # Specify the custom image name and tag
+    container_name: ipchecking
     ports:
       - "8000:8000"
     environment:
@@ -15,12 +15,12 @@ services:
     depends_on:
       - redis
 
-  blocklist-updater-service:
+  blocklistupdater-service:
     build:
-      context: ./blocklist-updater
+      context: ./blocklistupdater
       dockerfile: Dockerfile
-    image: blocklist-updater:latest
-    container_name: blocklist-updater
+    image: blocklistupdater:latest
+    container_name: blocklistupdater
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379

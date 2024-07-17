@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blocklist-updater
+  name: ipchecking
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: blocklist-updater
+      app: ipchecking
   template:
     metadata:
       labels:
-        app: blocklist-updater
+        app: ipchecking
     spec:
       containers:
-      - name: blocklist-updater
-        image: blocklist-updater:latest
+      - name: ipchecking
+        image: ipchecking:latest
         imagePullPolicy: Never  # Use the local image
         ports:
         - containerPort: 8000

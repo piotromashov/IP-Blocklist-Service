@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: blocklist-updater
+  name: blocklistupdater
 spec:
   selector:
-    app: blocklist-updater
+    app: blocklistupdater
   ports:
     - protocol: TCP
       port: 8000
