@@ -12,7 +12,7 @@
     - `{"blocked": false}`: If the IP is not on the blocklist.
 
 ## Requirements
-Python, Docker, Unix.
+Python, Docker, Minikube, Unix.
 
 ## How to run locally
 1. Execute `docker-compose up --build`   
