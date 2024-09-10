@@ -1,2 +1,4 @@
-pytest
 httpx
+requests-mock
+redis
+pytest

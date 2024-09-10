@@ -50,8 +50,9 @@ Python, Docker, Minikube, Unix.
 `pip install -r blocklistupdater/requirements.txt`  
 `pip install -r ipchecking/requirements.txt`  
 `pip install -r tests/requirements.txt`  
-3. Then run: 
-`pytest tests/test_main.py`
+3. Then run:  
+`pytest tests/test_blocklistupdater.py`  
+`pytest tests/test_ipchecking.py`
 
 ## How to run with Kubernetes
 
