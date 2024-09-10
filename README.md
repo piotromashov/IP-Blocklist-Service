@@ -1,6 +1,28 @@
-# Muun Challenge: IP Blocklist microservice.
+# IP Blocklist Service.
+
+This is a microservice that manages a blocklist of IPs. This service can be used to prevent abuse in different applications to ban IPs that are known to be used for malicious purposes.
+
+## Functional specs
+
+The service has a single REST endpoint that should take an IP v4 encoded as a string (e.g. `"127.0.0.1"`), and return `"true"` if the IP is part of the blacklist, and `"false"` otherwise.
+
+### Data source
+
+Instead of creating our own list of IPs, we take advantage of [this public list](https://github.com/stamparm/ipsum), which gets updated every 24hs. The microservice is in sync with it.
+
+## Non-functional specs
+
+This service is highly available, minimizing the time it takes to restart it and the downtime when updating the blocklist. The service should remain operational under heavy load, and be able to respond in a reasonably low time. 
+
 
 ## Endpoint
+
+This is an example of how calling the microservice looks like
+
+```bash
+$ curl http://blocklist/check_ip/127.0.0.1
+{"blocked": false}
+```
 
 ### GET /check_ip/{ip}
 - **Description**: Verify if an IP is on a blocklist.
